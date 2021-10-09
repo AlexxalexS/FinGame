@@ -7,37 +7,60 @@
 
 import SwiftUI
 
+enum Qusetion {
+    case one
+    case two
+    case three
+    case empty
+}
+
 struct QuizView: View {
-
-    @State var question1 =
-        Question(
-            number: 1,
-            state: false,
-            questionText: "Укажите основной уровень занятости",
-            responseMessages: ["учащийся", "работающий", "бизнесмен/работаю на себя"]
-        )
-
-    @State var question2 =
-        Question(
-            number: 2,
-            state: false,
-            questionText: "Укажите уровень образования",
-            responseMessages: ["учащийся", "работающий", "бизнесмен/работаю на себя"]
-        )
-
-
-
-    @State var counter = 0
 
     var body: some View {
 
-        VStack {
+        ScrollView {
+            Text("Расскажи о себе")
+                .font(.largeTitle)
+                .padding(.bottom)
 
-            OnceQuestion(question: question1)
+            OnceQuestion(
+                questionTitle: "Ты работоешь?",
+                image1: "portfel",
+                answer1: "Я - работяга",
+                image2: "monitor",
+                answer2: "Я учусь",
+                image3: "crown",
+                answer3: "Работа - не для меня"
+            )
+
+            DividerView().padding(.vertical, 24)
+
+            SliderView().padding(.horizontal, 24)
+
+            DividerView().padding(.vertical, 24)
+
+            OnceQuestion(
+                questionTitle: "Какое у тебя образование?",
+                image1: "hat",
+                answer1: "Высшее",
+                image2: "medal",
+                answer2: "Среднее",
+                image3: "cash",
+                answer3: "Ушёл в бизнес после 9 класса"
+            )
+
+            NavigationLink(destination: SwipeContentView()) {
+                Text("Далее")
+                    .font(.title2)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 48)
+                    .background(Color("blueMain"))
+                    .foregroundColor(.white)
+                    .cornerRadius(16)
+            }.padding(.vertical, 48)
+
             
-            OnceQuestion(question: question2)
-            SliderView()
-                .padding(.horizontal,24)
+            Spacer()
         }
 
     }
@@ -54,26 +77,111 @@ struct QuizView_Previews: PreviewProvider {
 
 private struct SliderView: View {
 
-    @State private var valueSlider: Double = 23
+    @State private var valueSlider: Double = 0
 
     var body: some View {
         VStack {
-            if (valueSlider > 23 && valueSlider <= 30) {
-                Text("\(Int(valueSlider * 1000))")
-                Text("Хватит на сырок")
-            } else if (valueSlider > 30 && valueSlider <= 65) {
-                Text("\(Int(valueSlider * 1000))")
-                Text("Жигули в ипотеку")
-            } else if (valueSlider > 65) {
-                Text("\(Int(valueSlider * 1000))")
-                Text("Покупаю на сдачу квартиру")
-            } else {
-                Text("\(Int(valueSlider * 1000))")
+            Text("Сколько ты зарабатываешь?")
+                .font(.title2)
+                .padding(.bottom, 24)
+
+            if valueSlider > 0 {
+                Text("\(Int(valueSlider * 1000)) ₽")
+                    .font(.title)
             }
-            Slider(value: $valueSlider, in: 0...100)
+
+            VStack {
+                if (valueSlider > 23 && valueSlider <= 30) {
+                    Text("Хватит на сырок")
+                        .font(.title2)
+                } else if (valueSlider > 30 && valueSlider <= 65) {
+                    Text("Жигули в ипотеку")
+                        .font(.title2)
+                } else if (valueSlider > 65) {
+                    Text("Покупаю на сдачу квартиру")
+                        .font(.title2)
+                }
+                Slider(value: $valueSlider, in: 0...100)
+            }
         }
     }
 }
+
+struct OnceQuestion: View {
+    @State var answer = Qusetion.empty
+
+    var questionTitle: String
+
+    var image1: String
+    var answer1: String
+
+    var image2: String
+    var answer2: String
+
+    var image3: String
+    var answer3: String
+
+    var body: some View {
+        VStack {
+            Text("\(questionTitle)")
+                .font(.title2)
+                .padding(.bottom, 24)
+
+            VStack(spacing: 16) {
+                Button(action: {
+                    answer = .one
+                }, label: {
+                    HStack {
+                        Image("\(image1)")
+                            .padding(.trailing, 20)
+                        Text("\(answer1)")
+                            .foregroundColor(.black)
+
+                        Spacer()
+                    }.padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(answer == .one ? Color("grayBackgroundChoose"): Color("grayBackground"))
+                        .cornerRadius(8)
+                }).padding(.horizontal, 24)
+
+                Button(action: {
+                    answer = .two
+                }, label: {
+                    HStack {
+                        Image("\(image2)")
+                            .padding(.trailing, 20)
+                        Text("\(answer2)")
+                            .foregroundColor(.black)
+
+                        Spacer()
+                    }.padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(answer == .two ? Color("grayBackgroundChoose"): Color("grayBackground"))
+                        .cornerRadius(8)
+                }).padding(.horizontal, 24)
+
+                Button(action: {
+                    answer = .three
+                }, label: {
+                    HStack {
+                        Image("\(image3)")
+                            .padding(.trailing, 20)
+                        Text("\(answer3)")
+                            .foregroundColor(.black)
+
+                        Spacer()
+                    }.padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(answer == .three ? Color("grayBackgroundChoose"): Color("grayBackground"))
+                        .cornerRadius(8)
+                }).padding(.horizontal, 24)
+            }
+        }
+    }
+}
+
+
+// old
 
 private struct RadioButton: View {
     @Binding var checked: Bool    //the variable that determines if its checked
@@ -104,7 +212,7 @@ private struct RadioButton: View {
     }
 }
 
-private struct OnceQuestion: View {
+private struct SomeOnceQuestion: View {
 
     var question: Question
     @State var state = false
@@ -123,4 +231,3 @@ private struct OnceQuestion: View {
     }
 
 }
-

@@ -13,23 +13,23 @@ struct SwipeContentView: View {
             HeaderView()
                 .padding(.horizontal, 24)
 
-            Divider()
+            DividerView()
 
             Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna lacus, rhoncus in risus at amet, et, hendrerit.")
                 .foregroundColor(Color("blueDark"))
                 .font(.title)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
-                .padding(.vertical, 24)
+                .padding(.vertical, 16)
 
-            Divider()
+            DividerView()
 
             ZStack {
                 ForEach(Card.data) { card in
                     CardView(card: card).padding(.horizontal, 24)
                 }
             }
-
+            Spacer()
         }
     }
 }
@@ -130,14 +130,4 @@ private struct HeaderView: View {
         
 
     }
-}
-
-private struct Divider: View {
-
-    var body: some View {
-        Rectangle()
-            .frame(maxHeight: 1)
-            .padding(.horizontal, 24)
-    }
-
 }

@@ -15,6 +15,7 @@
 		8A15020B271105C1004B0757 /* SwipeContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A15020A271105C1004B0757 /* SwipeContentView.swift */; };
 		8A15020D27111125004B0757 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A15020C27111125004B0757 /* QuizView.swift */; };
 		8A15020F27111168004B0757 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A15020E27111168004B0757 /* Question.swift */; };
+		8A15021527118BA0004B0757 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A15021427118BA0004B0757 /* DividerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		8A15020A271105C1004B0757 /* SwipeContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeContentView.swift; sourceTree = "<group>"; };
 		8A15020C27111125004B0757 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		8A15020E27111168004B0757 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		8A15021427118BA0004B0757 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +45,7 @@
 		8A1501ED2710EE24004B0757 = {
 			isa = PBXGroup;
 			children = (
+				8A15021427118BA0004B0757 /* DividerView.swift */,
 				8A1501F82710EE24004B0757 /* FinGame */,
 				8A1501F72710EE24004B0757 /* Products */,
 			);
@@ -64,6 +67,7 @@
 				8A1501FB2710EE24004B0757 /* ContentView.swift */,
 				8A15020A271105C1004B0757 /* SwipeContentView.swift */,
 				8A15020C27111125004B0757 /* QuizView.swift */,
+				8A15021327118B7A004B0757 /* Common */,
 				8A1501FD2710EE25004B0757 /* Assets.xcassets */,
 				8A1501FF2710EE25004B0757 /* Preview Content */,
 			);
@@ -85,6 +89,13 @@
 				8A15020E27111168004B0757 /* Question.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8A15021327118B7A004B0757 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,6 +170,7 @@
 			files = (
 				8A1501FC2710EE24004B0757 /* ContentView.swift in Sources */,
 				8A1502092710FAF5004B0757 /* Card.swift in Sources */,
+				8A15021527118BA0004B0757 /* DividerView.swift in Sources */,
 				8A15020D27111125004B0757 /* QuizView.swift in Sources */,
 				8A15020F27111168004B0757 /* Question.swift in Sources */,
 				8A1501FA2710EE24004B0757 /* FinGameApp.swift in Sources */,
