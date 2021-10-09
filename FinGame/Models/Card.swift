@@ -9,21 +9,19 @@ import UIKit
 
 struct Card: Identifiable {
     let id = UUID()
-    let text: String
     let image: String
-
     var x: CGFloat = 0.0
     var y: CGFloat = 0.0
     var degree: Double = 0.0
+    
+    var rightSwipte: Choose
+    var leftSwipe: Choose
 
-    static var data: [Card] {
-        [
-            Card(text: "Lol", image: "image1"),
-            Card(text: "kek", image: "image2"),
-            Card(text: "cheburek", image: "image3"),
-            Card(text: "hi!", image: "image4"),
-            Card(text: "by!", image: "image1"),
-        ]
+    struct Choose {
+        let fun: Int
+        let social: Int
+        let money: Int
+        let text: String
     }
 }
 

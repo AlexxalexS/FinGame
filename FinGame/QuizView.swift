@@ -30,7 +30,7 @@ struct QuizView: View {
                 image2: "monitor",
                 answer2: "Я учусь",
                 image3: "crown",
-                answer3: "Работа - не для меня"
+                answer3: "Я бизнесмен"
             )
 
             DividerView().padding(.vertical, 24)
@@ -183,51 +183,51 @@ struct OnceQuestion: View {
 
 // old
 
-private struct RadioButton: View {
-    @Binding var checked: Bool    //the variable that determines if its checked
-     var text: String
+//private struct RadioButton: View {
+//    @Binding var checked: Bool    //the variable that determines if its checked
+//     var text: String
+//
+//    var body: some View {
+//        HStack {
+//            Group{
+//                if checked {
+//                    ZStack{
+//                        Circle()
+//                            .fill(Color.blue)
+//                            .frame(width: 20, height: 20)
+//                        Circle()
+//                            .fill(Color.white)
+//                            .frame(width: 8, height: 8)
+//                    }.onTapGesture {self.checked = false}
+//                } else {
+//                    Circle()
+//                        .fill(Color.white)
+//                        .frame(width: 20, height: 20)
+//                        .overlay(Circle().stroke(Color.gray, lineWidth: 1))
+//                        .onTapGesture {self.checked = true}
+//                }
+//            }
+//            Text("\(text)")
+//        }
+//    }
+//}
 
-    var body: some View {
-        HStack {
-            Group{
-                if checked {
-                    ZStack{
-                        Circle()
-                            .fill(Color.blue)
-                            .frame(width: 20, height: 20)
-                        Circle()
-                            .fill(Color.white)
-                            .frame(width: 8, height: 8)
-                    }.onTapGesture {self.checked = false}
-                } else {
-                    Circle()
-                        .fill(Color.white)
-                        .frame(width: 20, height: 20)
-                        .overlay(Circle().stroke(Color.gray, lineWidth: 1))
-                        .onTapGesture {self.checked = true}
-                }
-            }
-            Text("\(text)")
-        }
-    }
-}
-
-private struct SomeOnceQuestion: View {
-
-    var question: Question
-    @State var state = false
-
-    var body: some View {
-
-        VStack {
-            Text(question.questionText)
-
-            RadioButton(checked: $state, text: question.responseMessages[0])
-            RadioButton(checked: $state, text: question.responseMessages[1])
-            RadioButton(checked: $state, text: question.responseMessages[2])
-
-        }
-
-    }
-
-}
+//private struct SomeOnceQuestion: View {
+//
+//    var question: Question
+//    @State var state = false
+//
+//    var body: some View {
+//
+//        VStack {
+//            Text(question.questionText)
+//
+//            RadioButton(checked: $state, text: question.responseMessages[0])
+//            RadioButton(checked: $state, text: question.responseMessages[1])
+//            RadioButton(checked: $state, text: question.responseMessages[2])
+//
+//        }
+//
+//    }
+//
+//}

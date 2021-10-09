@@ -34,7 +34,7 @@ struct ContentView: View {
                 }.foregroundColor(.black)
 
             }
-        }.navigationBarHidden(true)
+        }//.navigationBarHidden(true)
 
     }
 
