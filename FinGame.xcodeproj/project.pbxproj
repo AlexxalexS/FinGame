@@ -11,6 +11,10 @@
 		8A1501FC2710EE24004B0757 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1501FB2710EE24004B0757 /* ContentView.swift */; };
 		8A1501FE2710EE25004B0757 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A1501FD2710EE25004B0757 /* Assets.xcassets */; };
 		8A1502012710EE25004B0757 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A1502002710EE25004B0757 /* Preview Assets.xcassets */; };
+		8A1502092710FAF5004B0757 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1502082710FAF5004B0757 /* Card.swift */; };
+		8A15020B271105C1004B0757 /* SwipeContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A15020A271105C1004B0757 /* SwipeContentView.swift */; };
+		8A15020D27111125004B0757 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A15020C27111125004B0757 /* QuizView.swift */; };
+		8A15020F27111168004B0757 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A15020E27111168004B0757 /* Question.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		8A1501FB2710EE24004B0757 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8A1501FD2710EE25004B0757 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A1502002710EE25004B0757 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8A1502082710FAF5004B0757 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		8A15020A271105C1004B0757 /* SwipeContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeContentView.swift; sourceTree = "<group>"; };
+		8A15020C27111125004B0757 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		8A15020E27111168004B0757 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +59,11 @@
 		8A1501F82710EE24004B0757 /* FinGame */ = {
 			isa = PBXGroup;
 			children = (
+				8A1502072710FAE5004B0757 /* Models */,
 				8A1501F92710EE24004B0757 /* FinGameApp.swift */,
 				8A1501FB2710EE24004B0757 /* ContentView.swift */,
+				8A15020A271105C1004B0757 /* SwipeContentView.swift */,
+				8A15020C27111125004B0757 /* QuizView.swift */,
 				8A1501FD2710EE25004B0757 /* Assets.xcassets */,
 				8A1501FF2710EE25004B0757 /* Preview Content */,
 			);
@@ -65,6 +76,15 @@
 				8A1502002710EE25004B0757 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8A1502072710FAE5004B0757 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8A1502082710FAF5004B0757 /* Card.swift */,
+				8A15020E27111168004B0757 /* Question.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +158,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A1501FC2710EE24004B0757 /* ContentView.swift in Sources */,
+				8A1502092710FAF5004B0757 /* Card.swift in Sources */,
+				8A15020D27111125004B0757 /* QuizView.swift in Sources */,
+				8A15020F27111168004B0757 /* Question.swift in Sources */,
 				8A1501FA2710EE24004B0757 /* FinGameApp.swift in Sources */,
+				8A15020B271105C1004B0757 /* SwipeContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
