@@ -10,6 +10,7 @@ import UIKit
 struct Card: Identifiable {
     let id = UUID()
     let image: String
+    var textfield: String = ""
     var x: CGFloat = 0.0
     var y: CGFloat = 0.0
     var degree: Double = 0.0
