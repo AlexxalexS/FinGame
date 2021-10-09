@@ -36,7 +36,8 @@ struct QuizView: View {
             OnceQuestion(question: question1)
             
             OnceQuestion(question: question2)
-            //SliderView()questions
+            SliderView()
+                .padding(.horizontal,24)
         }
 
     }

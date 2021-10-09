@@ -9,22 +9,28 @@ import SwiftUI
 
 struct SwipeContentView: View {
     var body: some View {
-        VStack {
+        VStack(spacing: 16) {
             HeaderView()
-                .padding(.horizontal)
+                .padding(.horizontal, 24)
+
+            Divider()
+
+            Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna lacus, rhoncus in risus at amet, et, hendrerit.")
+                .foregroundColor(Color("blueDark"))
+                .font(.title)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 24)
+                .padding(.vertical, 24)
+
+            Divider()
 
             ZStack {
                 ForEach(Card.data) { card in
-                    CardView(card: card).padding(8)
+                    CardView(card: card).padding(.horizontal, 24)
                 }
             }
 
-            HStack {
-                HeaderView()
-                HeaderView()
-            }
-            .padding(.horizontal)
-        }.background(Color.blue.opacity(0.2))
+        }
     }
 }
 
@@ -46,13 +52,14 @@ private struct CardView: View {
             VStack {
                 Spacer()
                 HStack {
-                    Text(card.text)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .padding()
+                    Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
 
-                    Spacer()
+                        .padding(8)
+                        .background(Color.black.opacity(0.2))
+                        .padding(21)
+                        .font(.footnote)
+                        .foregroundColor(Color("lightGray"))
+                        .cornerRadius(8)
                 }
             }
         }.cornerRadius(8)
@@ -91,24 +98,46 @@ private struct CardView: View {
 private struct HeaderView: View {
     var body: some View {
         HStack {
-            Button(action: {}, label: {
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(width: 60, height: 60)
-            })
+            HStack {
+                Image("palm")
+                Text("100")
+                    .foregroundColor(.white)
+                    .font(.title)
+            }
 
             Spacer()
 
-            Button(action: {}, label: {
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(width: 60, height: 60)
-            })
+            HStack {
+                Image("arms")
+                Text("100")
+                    .foregroundColor(.white)
+                    .font(.title)
+            }
+
 
             Spacer()
 
-            Button(action: {}, label: {
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(width: 60, height: 60)
-            })
-        }
+            HStack {
+                Image("palm")
+                Text("100")
+                    .foregroundColor(.white)
+                    .font(.title)
+            }
+        }.padding(.horizontal, 16)
+            .padding(.vertical, 21)
+            .background(Color("blueMain"))
+            .cornerRadius(8)
+        
+
     }
+}
+
+private struct Divider: View {
+
+    var body: some View {
+        Rectangle()
+            .frame(maxHeight: 1)
+            .padding(.horizontal, 24)
+    }
+
 }
