@@ -54,7 +54,7 @@ struct SwipeContentView: View {
                                         .frame(width: 60, height: 2)
 
                                     //Text("\(card.notificationText)")
-                                    Text("\(question[numberQuestion].title)")
+                                    Text("\(question[numberQuestion].notificationText)")
                                         .padding(24)
                                         .font(.title3)
 
@@ -105,7 +105,7 @@ struct SwipeContentView: View {
 
                 }
             }
-        }
+        }.navigationBarHidden(true)
     }
 
 }
@@ -152,32 +152,38 @@ private struct CardView: View {
                 }.padding(.bottom, 24)
                 Spacer()
                 ZStack {
-                    Image(card.image)
-                        .resizable()
-                        .frame(width: 327, height: 460)
+                    if card.image != "" {
+                        Image(card.image)
+                            .resizable()
+                            .frame(width: 327-20, height: 460-20)
+                    } else {
+                        Rectangle().foregroundColor(Color.white)
+                    }
 
-                    VStack {
-                        Spacer()
-                        HStack {
-                            if card.x < 0 {
-                                Text("\(card.rightSwipte.text)")
-                                    .padding(10)
-                                    .background(Color.black.opacity(0.6))
-                                    .cornerRadius(10)
-                                    .padding(10)
-                                    .frame(maxWidth: .infinity)
-                                    .foregroundColor(Color.white)
-                            }
-                            if card.x > 0 {
-                                Text("\(card.leftSwipe.text)")
-                                    .padding(10)
-                                    .background(Color.black.opacity(0.6))
-                                    .cornerRadius(10)
-                                    .padding(10)
-                                    .frame(maxWidth: .infinity)
-                                    .foregroundColor(Color.white)
-                            }
+                    if card.rightSwipte.text != "" || card.leftSwipe.text != "" {
+                        VStack {
+                            Spacer()
+                            HStack {
+                                if card.x < 0 {
+                                    Text("\(card.rightSwipte.text)")
+                                        .padding(10)
+                                        .background(Color.black.opacity(0.6))
+                                        .cornerRadius(10)
+                                        .padding(10)
+                                        .frame(maxWidth: .infinity)
+                                        .foregroundColor(Color.white)
+                                }
+                                if card.x > 0 {
+                                    Text("\(card.leftSwipe.text)")
+                                        .padding(10)
+                                        .background(Color.black.opacity(0.6))
+                                        .cornerRadius(10)
+                                        .padding(10)
+                                        .frame(maxWidth: .infinity)
+                                        .foregroundColor(Color.white)
+                                }
 
+                            }
                         }
                     }
                 }.cornerRadius(8)
@@ -280,15 +286,17 @@ private struct LampView: View {
                 Spacer()
                 ZStack {
                     Circle()
+                        .strokeBorder(Color.black.opacity(0.3), lineWidth: 1)
+                        .background(Circle().foregroundColor(Color.white))
                         .frame(width: 46, height: 46)
-                        .foregroundColor(Color.white)
-                        .shadow(color: Color.black.opacity(0.2), radius: 3)
+
                     Button(action: {
                         isShowingSheet.toggle()
                     }, label: {
                         Image("lamp")
                     })
                 }.offset(x: 5, y: 10)
+
             }
         }
     }

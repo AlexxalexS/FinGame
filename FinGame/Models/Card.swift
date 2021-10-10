@@ -23,6 +23,7 @@ struct Card: Identifiable {
         let social: Int
         let money: Int
         let text: String
+        var isGameOver: Bool = false
     }
 }
 
