@@ -49,7 +49,7 @@ struct QuizView: View {
                 answer3: "Ушёл в бизнес после 9 класса"
             )
 
-            NavigationLink(destination: SwipeContentView()) {
+            NavigationLink(destination: InstructionView()) {
                 Text("Далее")
                     .font(.title2)
                     .padding(.vertical, 8)
