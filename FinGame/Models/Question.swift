@@ -41,6 +41,10 @@ var student1 = [
         )
     ),
 
+
+
+    
+
 //    Question(
 //        title: "Вчера купили акции, сегодня она дала роста +40%, что делаем?",
 //        notification: true,

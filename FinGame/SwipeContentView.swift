@@ -16,6 +16,8 @@ struct SwipeContentView: View {
     @State var question = student1
     @State private var isShowingSheet = false
 
+    @State var numberQuestion = 0
+
     var body: some View {
         VStack(spacing: 0) {
             HeaderView(fun: $fun, social: $social, money: $money)
@@ -33,37 +35,79 @@ struct SwipeContentView: View {
                 Spacer()
             } else {
                 ZStack {
-                    ForEach(question.reversed()) { card in
-                        VStack {
-                            CardView(
-                                card: card.card,
-                                title: card.title,
-                                fun: $fun,
-                                social: $social,
-                                money: $money,
-                                counter: $conunter,
-                                isShowingSheet: $isShowingSheet
-                            ).padding(.horizontal, 24)
-                        }.sheet(isPresented: $isShowingSheet) {
-                            VStack {
-                                RoundedRectangle(cornerRadius: 16)
-                                    .foregroundColor(Color.gray)
-                                    .frame(width: 60, height: 3)
+                    ForEach((0..<question.count).reversed(), id: \.self) { index in
+                        CardView(
+                            card: question[index].card,
+                            title: question[index].title,
+                            fun: $fun,
+                            social: $social,
+                            money: $money,
+                            counter: $conunter,
+                            isShowingSheet: $isShowingSheet,
+                            numberQuestion: $numberQuestion
+                        ).padding(.horizontal, 24)
+                            .sheet(isPresented: $isShowingSheet) {
+                                VStack {
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .foregroundColor(Color.gray)
 
-                                Text("\(card.title)")
+                                        .frame(width: 60, height: 2)
 
-                                    .padding(24)
-                                    .font(.title3)
+                                    //Text("\(card.notificationText)")
+                                    Text("\(question[numberQuestion].title)")
+                                        .padding(24)
+                                        .font(.title3)
 
-                                Spacer()
-                            }.padding()
-                        }
-
+                                    Spacer()
+                                }.padding()
+                            }
                     }
+                    //
+                    //                    CardView(
+                    //                        card: question[numberQuestion].card,
+                    //                        title: question[numberQuestion].title,
+                    //                        fun: $fun,
+                    //                        social: $social,
+                    //                        money: $money,
+                    //                        counter: $conunter,
+                    //                        isShowingSheet: $isShowingSheet,
+                    //                        numberQuestion: $numberQuestion
+                    //                    ).padding(.horizontal, 24)
+                    //                        .sheet(isPresented: $isShowingSheet) {
+                    //                            VStack {
+                    //                                RoundedRectangle(cornerRadius: 16)
+                    //                                    .foregroundColor(Color.gray)
+                    //
+                    //                                    .frame(width: 60, height: 2)
+                    //
+                    //                                //Text("\(card.notificationText)")
+                    //                                Text("\(question[numberQuestion].title)")
+                    //                                    .padding(24)
+                    //                                    .font(.title3)
+                    //
+                    //                                Spacer()
+                    //                            }.padding()
+                    //                        }
+
+                    //                    ForEach(question.reversed()) { card in
+                    //                        VStack {
+                    //                            CardView(
+                    //                                card: card.card,
+                    //                                title: card.title,
+                    //                                fun: $fun,
+                    //                                social: $social,
+                    //                                money: $money,
+                    //                                counter: $conunter,
+                    //                                isShowingSheet: $isShowingSheet
+                    //                            ).padding(.horizontal, 24)
+                    //                        }
+
+
                 }
             }
         }
     }
+
 }
 
 struct SwipeContentView_Previews: PreviewProvider {
@@ -83,6 +127,8 @@ private struct CardView: View {
     @Binding var money: Int
     @Binding var counter: Int
     @Binding var isShowingSheet: Bool
+
+    @Binding var numberQuestion: Int
 
     var body: some View {
         if isShow {
@@ -159,6 +205,7 @@ private struct CardView: View {
                                         fun += card.leftSwipe.fun
                                         social += card.leftSwipe.social
                                         counter += 1
+                                        numberQuestion += 1
                                     case (-100)...(-1):
                                         card.x = 0; card.degree = 0; card.y = 0;
                                     case let x where x < -100:
@@ -168,6 +215,7 @@ private struct CardView: View {
                                         fun += card.rightSwipte.fun
                                         social += card.rightSwipte.social
                                         counter += 1
+                                        numberQuestion += 1
                                     default: card.x = 0; card.y = 0;
                                     }
                                 }
@@ -220,8 +268,6 @@ private struct HeaderView: View {
             .padding(.vertical, 21)
             .background(Color("blueMain"))
             .cornerRadius(8)
-        
-
     }
 }
 
