@@ -85,13 +85,16 @@ private struct SliderView: View {
                 .font(.title2)
                 .padding(.bottom, 24)
 
-            if valueSlider > 0 {
-                Text("\(Int(valueSlider * 1000)) ₽")
-                    .font(.title)
-            }
+
+            Text("\(Int(valueSlider * 1000)) ₽")
+                .font(.title)
+
 
             VStack {
-                if (valueSlider > 23 && valueSlider <= 30) {
+                if (valueSlider >= 0 && valueSlider <= 10) {
+                    Text("Не хватит на сырок")
+                        .font(.title2)
+                } else if (valueSlider > 10 && valueSlider <= 30) {
                     Text("Хватит на сырок")
                         .font(.title2)
                 } else if (valueSlider > 30 && valueSlider <= 65) {

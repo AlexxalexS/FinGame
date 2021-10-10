@@ -28,6 +28,13 @@ struct SwipeContentView: View {
             if conunter == question.count {
                 if gameOver {
                     Image("gameOverGray")
+                        .padding(.bottom, 24)
+
+                    Text("Поздравляю, ты потерял все деньги!")
+
+                    Spacer()
+
+                    Image("statsGameOver")
 
                     Spacer()
 
@@ -39,6 +46,13 @@ struct SwipeContentView: View {
                     })
                 } else {
                     Image("gameWin")
+                        .padding(.bottom, 24)
+
+                    Text("Поздравляю, ты успешно справился!")
+
+                    Spacer()
+
+                    Image("statsGameWin")
 
                     Spacer()
 
@@ -147,14 +161,15 @@ private struct CardView: View {
                     if card.image != "" {
                         Image(card.image)
                             .resizable()
-                            .frame(width: 327-20, height: 460-20)
+                            .frame(width: 307, height: 440)
+                            .animation(.easeInOut)
                     } else {
                         Rectangle().foregroundColor(Color.white)
                     }
 
                     if card.rightSwipte.text != "" || card.leftSwipe.text != "" {
                         VStack {
-                            Spacer()
+
                             HStack {
                                 if card.x < -3 {
                                     Text("\(card.rightSwipte.text)")
@@ -176,6 +191,7 @@ private struct CardView: View {
                                 }
 
                             }
+                            Spacer()
                         }
                     }
                 }.cornerRadius(8)
