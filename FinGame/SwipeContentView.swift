@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SwipeContentView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     @State var fun = 0
     @State var social = 0
     @State var money = 0
@@ -19,36 +21,46 @@ struct SwipeContentView: View {
     @State var numberQuestion = 0
 
     @State var gameOver = false
+    @State var gameWin = false
 
     var body: some View {
         VStack(spacing: 0) {
-            HeaderView(fun: $fun, social: $social, money: $money)
-                .padding(.horizontal, 24)
-                .padding(.bottom, 16)
+            if conunter == question.count {
+                if gameOver {
+                    Image("gameOverGray")
 
-            Spacer()
+                    Spacer()
 
-/*
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                        gameOver = false
+                    }, label: {
+                        Image("playAgain")
+                    })
+                } else {
+                    Image("gameWin")
 
- if conunter == question.count {
-     Text("Ура ты выиграл")
+                    Spacer()
 
-     Text("Ты отличо справляешься!")
-
-     Text("Переходи и попробуй демо-режим инвестора на сойте ВТБ").padding()
-     Spacer()
-
- */
-
-            if gameOver {
-
-
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                        gameOver = false
+                    }, label: {
+                        Image("playAgain")
+                    })
+                }
             } else {
+                HeaderView(fun: $fun, social: $social, money: $money)
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 16)
+
+                Spacer()
                 ZStack {
                     ForEach((0..<question.count).reversed(), id: \.self) { index in
                         CardView(
                             card: question[index].card,
                             title: question[index].title,
+                            isNotification: question[index].notification,
                             fun: $fun,
                             social: $social,
                             money: $money,
@@ -56,7 +68,9 @@ struct SwipeContentView: View {
                             isShowingSheet: $isShowingSheet,
                             numberQuestion: $numberQuestion,
                             question: $question,
-                            id: question[index].id
+                            id: question[index].id,
+                            gameOver: $gameOver,
+                            gameWin: $gameWin
                         ).padding(.horizontal, 24)
                             .sheet(isPresented: $isShowingSheet) {
                                 VStack {
@@ -74,47 +88,6 @@ struct SwipeContentView: View {
                                 }.padding()
                             }
                     }
-                    //
-                    //                    CardView(
-                    //                        card: question[numberQuestion].card,
-                    //                        title: question[numberQuestion].title,
-                    //                        fun: $fun,
-                    //                        social: $social,
-                    //                        money: $money,
-                    //                        counter: $conunter,
-                    //                        isShowingSheet: $isShowingSheet,
-                    //                        numberQuestion: $numberQuestion
-                    //                    ).padding(.horizontal, 24)
-                    //                        .sheet(isPresented: $isShowingSheet) {
-                    //                            VStack {
-                    //                                RoundedRectangle(cornerRadius: 16)
-                    //                                    .foregroundColor(Color.gray)
-                    //
-                    //                                    .frame(width: 60, height: 2)
-                    //
-                    //                                //Text("\(card.notificationText)")
-                    //                                Text("\(question[numberQuestion].title)")
-                    //                                    .padding(24)
-                    //                                    .font(.title3)
-                    //
-                    //                                Spacer()
-                    //                            }.padding()
-                    //                        }
-
-                    //                    ForEach(question.reversed()) { card in
-                    //                        VStack {
-                    //                            CardView(
-                    //                                card: card.card,
-                    //                                title: card.title,
-                    //                                fun: $fun,
-                    //                                social: $social,
-                    //                                money: $money,
-                    //                                counter: $conunter,
-                    //                                isShowingSheet: $isShowingSheet
-                    //                            ).padding(.horizontal, 24)
-                    //                        }
-
-
                 }
             }
         }.navigationBarHidden(true)
@@ -132,6 +105,7 @@ private struct CardView: View {
 
     @State var card: Card
     @State var title: String
+    @State var isNotification = true
     @State var isShow = true
 
     @Binding var fun: Int
@@ -143,6 +117,8 @@ private struct CardView: View {
     @Binding var numberQuestion: Int
     @Binding var question: [Question]
     var id: Int
+    @Binding var gameOver: Bool
+    @Binding var gameWin: Bool
 
     var body: some View {
         if isShow {
@@ -154,9 +130,11 @@ private struct CardView: View {
 
                     Text("\(title)")
                         .foregroundColor(Color("blueDark"))
-                        .font(.title)
+                        .font(.title3)
                         .multilineTextAlignment(.center)
-                        .padding(.horizontal, 24)
+                        .lineLimit(20)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(.horizontal)
                         .padding(.vertical, 16)
 
                     Spacer()
@@ -178,21 +156,21 @@ private struct CardView: View {
                         VStack {
                             Spacer()
                             HStack {
-                                if card.x < 0 {
+                                if card.x < -3 {
                                     Text("\(card.rightSwipte.text)")
                                         .padding(10)
                                         .background(Color.black.opacity(0.6))
                                         .cornerRadius(10)
-                                        .padding(10)
+                                        .padding(8)
                                         .frame(maxWidth: .infinity)
                                         .foregroundColor(Color.white)
                                 }
-                                if card.x > 0 {
+                                if card.x > 3 {
                                     Text("\(card.leftSwipe.text)")
                                         .padding(10)
                                         .background(Color.black.opacity(0.6))
                                         .cornerRadius(10)
-                                        .padding(10)
+                                        .padding(8)
                                         .frame(maxWidth: .infinity)
                                         .foregroundColor(Color.white)
                                 }
@@ -231,6 +209,35 @@ private struct CardView: View {
                                         }
                                         if (id == 10) {
                                             question.append(go1)
+                                            gameOver = true
+                                        }
+                                        if (id == 7) {
+                                            question.append(text2)
+                                        }
+                                        if (id == 8 || id == 9) {
+                                            question.append(ans9)
+                                        }
+                                        if (id == 12) {
+                                            question.append(ans11)
+                                        }
+                                        if (id == 13) {
+                                            question.append(ans12)
+                                        }
+                                        if (id == 14) {
+                                            question.append(ans12)
+                                        }
+                                        if (id == 15) {
+                                            question.append(go2)
+                                            gameOver = true
+                                        }
+                                        if (id == 17 && money >= 50) {
+                                            question.append(text5)
+                                        }
+                                        if (id == 17 && money < 50) {
+                                            question.append(text4)
+                                        }
+                                        if (id == 18 || id == 19) {
+                                            gameWin = true
                                         }
                                     case (-100)...(-1):
                                         card.x = 0; card.degree = 0; card.y = 0;
@@ -242,6 +249,40 @@ private struct CardView: View {
                                         social += card.rightSwipte.social
                                         counter += 1
                                         numberQuestion += 1
+                                        
+                                        if (id == 3) {
+                                            question.append(ans7)
+                                        }
+                                        if (id == 7) {
+                                            question.append(text1)
+                                        }
+                                        if (id == 8 || id == 9) {
+                                            question.append(ans9)
+                                        }
+                                        if (id == 10) {
+                                            question.append(ans10)
+                                        }
+                                        if (id == 12) {
+                                            question.append(ans11)
+                                        }
+                                        if (id == 13) {
+                                            question.append(text3)
+                                        }
+                                        if (id == 14) {
+                                            question.append(ans12)
+                                        }
+                                        if (id == 15) {
+                                            question.append(ans13)
+                                        }
+                                        if (id == 17 && money >= 50) {
+                                            question.append(text5)
+                                        }
+                                        if (id == 17 && money < 50) {
+                                            question.append(text4)
+                                        }
+                                        if (id == 18 || id == 19) {
+                                            gameWin = true
+                                        }
                                     default: card.x = 0; card.y = 0;
                                     }
                                 }
@@ -249,7 +290,7 @@ private struct CardView: View {
                     )
             }.background(isShow ? Color.white : nil)
                 .overlay(
-                    LampView(isShowingSheet: $isShowingSheet)
+                    LampView(isNotification: $isNotification, isShowingSheet: $isShowingSheet)
                 )
         }
 
@@ -299,24 +340,28 @@ private struct HeaderView: View {
 
 private struct LampView: View {
 
+    @Binding var isNotification: Bool
+
     @Binding var isShowingSheet: Bool
     var body: some View {
-        HStack {
-            Spacer()
-            VStack{
+        if isNotification {
+            HStack {
                 Spacer()
-                ZStack {
-                    Circle()
-                        .strokeBorder(Color.black.opacity(0.3), lineWidth: 1)
-                        .background(Circle().foregroundColor(Color.white))
-                        .frame(width: 46, height: 46)
+                VStack{
+                    Spacer()
+                    ZStack {
+                        Circle()
+                            .strokeBorder(Color.black.opacity(0.3), lineWidth: 1)
+                            .background(Circle().foregroundColor(Color.white))
+                            .frame(width: 46, height: 46)
 
-                    Button(action: {
-                        isShowingSheet.toggle()
-                    }, label: {
-                        Image("lamp")
-                    })
-                }.offset(x: 5, y: 10)
+                        Button(action: {
+                            isShowingSheet.toggle()
+                        }, label: {
+                            Image("lamp")
+                        })
+                    }.offset(x: 5, y: 10)
+                }
             }
         }
     }

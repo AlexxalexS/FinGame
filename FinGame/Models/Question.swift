@@ -103,7 +103,7 @@ var text1 = Question(
     card: Card(
         image: "",
         rightSwipte: Card.Choose(fun: -5, social: 0, money: 0, text: ""),
-        leftSwipe: Card.Choose(fun: -5, social: 0, money: 5, text: "")
+        leftSwipe: Card.Choose(fun: -5, social: 0, money: 0, text: "")
     )
 )
 
@@ -115,7 +115,7 @@ var text2 = Question(
     card: Card(
         image: "",
         rightSwipte: Card.Choose(fun: -5, social: 0, money: 0, text: ""),
-        leftSwipe: Card.Choose(fun: -5, social: 0, money: 5, text: "")
+        leftSwipe: Card.Choose(fun: -5, social: 0, money: 0, text: "")
     )
 )
 
@@ -170,7 +170,7 @@ var text3 = Question(
 
 var ans12 = Question(
     id: 15,
-    title: "Вы достаточно серьезно увлеклись инвестированием, и не проводили время за дружескими посиделками очень давно. А тут вас приглашают на недельный поход в лес. Интернета всю неделю не будет. Идем?",
+    title: "Вы серьезно увлеклись инвестированием, и не проводили время за дружескими посиделками давно. А тут вас зовут на неделю в поход. Идем?",
     notification: false,
     notificationText: "",
     card: Card(
@@ -223,28 +223,28 @@ var go1 = Question(
     notificationText: "Pump and Dump – манипулятивная схема повышения курса криптовалюты с последующим ценовым обвалом. Крупные владельцы активов искусственно повышают («накачивают», pump) их стоимость, чтобы впоследствии продать («сбросить», dump) максимально дорого мелким трейдерам. В результате стоимость актива снижается, а инвесторы теряют средства.",
     card: Card(
         image: "",
-        rightSwipte: Card.Choose(fun: -5, social: 0, money: 0, text: "Очень жаль, но я готов продолжать", isGameOver: true),
-        leftSwipe: Card.Choose(fun: -5, social: 0, money: 5, text: "Я расстроен, но не сломлен", isGameOver: true)
+        rightSwipte: Card.Choose(fun: 0, social: 0, money: 0, text: "Очень жаль, но я готов продолжать", isGameOver: true),
+        leftSwipe: Card.Choose(fun: 0, social: 0, money: 0, text: "Я расстроен, но не сломлен", isGameOver: true)
     )
 )
 
-var student1 = [
+var go2 = Question(
+    id: 16,
+    title: "В инвестировании, как и в любой другой работе важно не забывать о жизни, дабы не терять интерес к новому увлечению и получать вдохновение от других занятий. Не забывайте и о других аспектах вашей жизни.",
+    notification: false,
+    notificationText: "",
+    card: Card(
+        image: "",
+        rightSwipte: Card.Choose(fun: 0, social: 0, money: 0, text: "Понял, принял", isGameOver: true),
+        leftSwipe: Card.Choose(fun: 0, social: 0, money: 0, text: "Я не хочу распыляться на это", isGameOver: true)
+    )
+)
+
 
     // always gameover by friend
 
 
     // always gameover 2
-    Question(
-        id: 16,
-        title: "В инвестировании, как и в любой другой работе важно не забывать о жизни, дабы не терять интерес к новому увлечению и получать вдохновение от других занятий. Не забывайте и о других аспектах вашей жизни.",
-        notification: false,
-        notificationText: "",
-        card: Card(
-            image: "",
-            rightSwipte: Card.Choose(fun: 0, social: 0, money: 0, text: "Очень жаль, но я готов продолжать", isGameOver: true),
-            leftSwipe: Card.Choose(fun: 0, social: 0, money: 5, text: "Я расстроен, но не сломлен", isGameOver: true)
-        )
-    ),
 
 
 //    Question(
@@ -257,7 +257,7 @@ var student1 = [
 //            leftSwipe: Card.Choose(fun: 0, social: 5, money: 0, text: "Нет, как-то ненадежно")
 //        )
 //    )
-]
+
 
 //var work1 = [
 //    Question(
