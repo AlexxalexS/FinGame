@@ -102,8 +102,8 @@ var text1 = Question(
     notificationText: "Среди стратегий можно выделить две наиболее популярных: “купить дешевле, продать дороже”, сопряженная с высокими рисками, т.к. цена акций меняется на бирже ежесекундно и может “сыграть” в обратную сторону; дивидендная стратегия - сохранение акций в портфеле для получения дохода в виде дивидендов, а не перспективе роста стоимости акций. Данная стратегия сопряжена с меньшими рисками.",
     card: Card(
         image: "",
-        rightSwipte: Card.Choose(fun: -5, social: 0, money: 0, text: ""),
-        leftSwipe: Card.Choose(fun: -5, social: 0, money: 0, text: "")
+        rightSwipte: Card.Choose(fun: -5, social: 0, money: 0, text: "ОК"),
+        leftSwipe: Card.Choose(fun: -5, social: 0, money: 0, text: "Печально")
     )
 )
 
@@ -114,8 +114,8 @@ var text2 = Question(
     notificationText: "Среди стратегий можно выделить две наиболее популярных: “купить дешевле, продать дороже”, сопряженная с высокими рисками, т.к. цена акций меняется на бирже ежесекундно и может “сыграть” в обратную сторону; дивидендная стратегия - сохранение акций в портфеле для получения дохода в виде дивидендов, а не перспективе роста стоимости акций. Данная стратегия сопряжена с меньшими рисками.",
     card: Card(
         image: "",
-        rightSwipte: Card.Choose(fun: -5, social: 0, money: 0, text: ""),
-        leftSwipe: Card.Choose(fun: -5, social: 0, money: 0, text: "")
+        rightSwipte: Card.Choose(fun: -5, social: 0, money: 0, text: "ОК"),
+        leftSwipe: Card.Choose(fun: -5, social: 0, money: 0, text: "Печально")
     )
 )
 

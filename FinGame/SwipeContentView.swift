@@ -34,16 +34,12 @@ struct SwipeContentView: View {
 
                     Spacer()
 
-                    Image("statsGameOver")
+                    Image("back")
 
                     Spacer()
-
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                        gameOver = false
-                    }, label: {
+                    NavigationLink(destination: QuizView()) {
                         Image("playAgain")
-                    })
+                    }
                 } else {
                     Image("gameWin")
                         .padding(.bottom, 24)
@@ -52,16 +48,13 @@ struct SwipeContentView: View {
 
                     Spacer()
 
-                    Image("statsGameWin")
+                    Image("back1")
 
                     Spacer()
 
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                        gameOver = false
-                    }, label: {
+                    NavigationLink(destination: QuizView()) {
                         Image("playAgain")
-                    })
+                    }
                 }
             } else {
                 HeaderView(fun: $fun, social: $social, money: $money)
@@ -164,7 +157,7 @@ private struct CardView: View {
                             .frame(width: 307, height: 440)
                             .animation(.easeInOut)
                     } else {
-                        Rectangle().foregroundColor(Color.white)
+                        Rectangle().foregroundColor(Color("grayBackgroundChoose"))
                     }
 
                     if card.rightSwipte.text != "" || card.leftSwipe.text != "" {
@@ -203,7 +196,7 @@ private struct CardView: View {
                                 withAnimation(.easeInOut(duration: 0.2)) {
                                     card.x = value.translation.width
                                     //card.y = value.translation.height
-                                    card.degree = 7 * (value.translation.width > 0 ? 1 : -1)
+                                    card.degree = 3 * (value.translation.width > 0 ? 1 : -1)
                                 }
                             }
 
@@ -213,7 +206,7 @@ private struct CardView: View {
                                     case 0...100:
                                         card.x = 0; card.degree = 0; card.y = 0
                                     case let x where x > 100:
-                                        card.x = 500; card.degree = 12
+                                        card.x = 500; card.degree = 4
                                         isShow = false
                                         money += card.leftSwipe.money
                                         fun += card.leftSwipe.fun
@@ -258,7 +251,7 @@ private struct CardView: View {
                                     case (-100)...(-1):
                                         card.x = 0; card.degree = 0; card.y = 0;
                                     case let x where x < -100:
-                                        card.x = -500; card.degree = -12
+                                        card.x = -500; card.degree = -4
                                         isShow = false
                                         money += card.rightSwipte.money
                                         fun += card.rightSwipte.fun
