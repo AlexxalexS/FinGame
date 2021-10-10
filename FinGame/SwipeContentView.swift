@@ -13,10 +13,12 @@ struct SwipeContentView: View {
     @State var money = 0
     @State var conunter = 0
 
-    @State var question = student1
+    @State var question = [ans1, ans2, ans3]
     @State private var isShowingSheet = false
 
     @State var numberQuestion = 0
+
+    @State var gameOver = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -26,13 +28,21 @@ struct SwipeContentView: View {
 
             Spacer()
 
-            if conunter == question.count {
-                Text("Ура ты выиграл")
+/*
 
-                Text("Ты отличо справляешься!")
+ if conunter == question.count {
+     Text("Ура ты выиграл")
 
-                Text("Переходи и попробуй демо-режим инвестора на сойте ВТБ").padding()
-                Spacer()
+     Text("Ты отличо справляешься!")
+
+     Text("Переходи и попробуй демо-режим инвестора на сойте ВТБ").padding()
+     Spacer()
+
+ */
+
+            if gameOver {
+
+
             } else {
                 ZStack {
                     ForEach((0..<question.count).reversed(), id: \.self) { index in
@@ -44,7 +54,9 @@ struct SwipeContentView: View {
                             money: $money,
                             counter: $conunter,
                             isShowingSheet: $isShowingSheet,
-                            numberQuestion: $numberQuestion
+                            numberQuestion: $numberQuestion,
+                            question: $question,
+                            id: question[index].id
                         ).padding(.horizontal, 24)
                             .sheet(isPresented: $isShowingSheet) {
                                 VStack {
@@ -129,6 +141,8 @@ private struct CardView: View {
     @Binding var isShowingSheet: Bool
 
     @Binding var numberQuestion: Int
+    @Binding var question: [Question]
+    var id: Int
 
     var body: some View {
         if isShow {
@@ -212,6 +226,12 @@ private struct CardView: View {
                                         social += card.leftSwipe.social
                                         counter += 1
                                         numberQuestion += 1
+                                        if (id == 3) {
+                                            question.append(ans9)
+                                        }
+                                        if (id == 10) {
+                                            question.append(go1)
+                                        }
                                     case (-100)...(-1):
                                         card.x = 0; card.degree = 0; card.y = 0;
                                     case let x where x < -100:
@@ -278,6 +298,7 @@ private struct HeaderView: View {
 }
 
 private struct LampView: View {
+
     @Binding var isShowingSheet: Bool
     var body: some View {
         HStack {
@@ -296,8 +317,8 @@ private struct LampView: View {
                         Image("lamp")
                     })
                 }.offset(x: 5, y: 10)
-
             }
         }
     }
+    
 }
